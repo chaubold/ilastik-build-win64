@@ -995,6 +995,38 @@ set_target_properties(${ipython_NAME} PROPERTIES EXCLUDE_FROM_ALL ON)
 
 endif (NOT ipython_NAME)
 
+#
+# Install jsonschema library from source
+#
+
+if (NOT jsonschema_NAME)
+
+external_source (jsonschema
+    2.3.0
+    jsonschema-2.3.0.tar.gz
+    410075e1969a9ec1838b5a6e1313c32b
+    https://pypi.python.org/packages/source/j/jsonschema
+    FORCE)
+
+message ("Installing ${jsonschema_NAME} into ilastik build area: ${ILASTIK_DEPENDENCY_DIR} ...")
+ExternalProject_Add(${jsonschema_NAME}
+    DEPENDS             ${python_NAME} ${setuptools_NAME}
+    PREFIX              ${ILASTIK_DEPENDENCY_DIR}
+    URL                 ${jsonschema_URL}
+    URL_MD5             ${jsonschema_MD5}
+    UPDATE_COMMAND      ""
+    PATCH_COMMAND       ""
+    CONFIGURE_COMMAND   ""
+    BUILD_COMMAND       ${PYTHON_EXE} setup.py install
+    BUILD_IN_SOURCE     1
+    TEST_COMMAND        ""
+    INSTALL_COMMAND     ""
+)
+
+set_target_properties(${jsonschema_NAME} PROPERTIES EXCLUDE_FROM_ALL ON)
+
+endif (NOT jsonschema_NAME)
+
 endif ()
 
 
