@@ -87,6 +87,8 @@ endif ()
 get_filename_component(ILASTIK_DEPENDENCY_DIR ${ILASTIK_DEPENDENCY_DIR} ABSOLUTE)
 file(TO_NATIVE_PATH ${ILASTIK_DEPENDENCY_DIR} ILASTIK_DEPENDENCY_DIR_DOS)
 
+OPTION(WITH_OPENSSL "Build Python with OpenSSL support ?" OFF)
+
 OPTION(WITH_SCIPY "Build scipy (and its dependencies) ?" OFF)
 
 if(WITH_SCIPY)
