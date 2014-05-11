@@ -46,6 +46,11 @@ external_source (python
 SET(PYTHON_PREFIX ${ILASTIK_DEPENDENCY_DIR}/python)
 SET(PYTHON_BIN_DIR ${python_SRC_DIR}/PCbuild)
 
+string(REGEX REPLACE "/" "\\\\\\\\" PYTHON_REGISTRY_PREFIX ${PYTHON_PREFIX})
+MESSAGE(STATUS "PYTHON_REGISTRY_PREFIX ${PYTHON_REGISTRY_PREFIX}")
+configure_file(python27-registry-entry.reg.in 
+               ${ILASTIK_DEPENDENCY_DIR}/tmp/python27-registry-entry.reg)
+
 # Add missing '/MANIFEST' compiler flag to msvc9compiler.py
 set(python_PATCH ${PYTHON_PATH_PREFIX}\\python.exe ${PROJECT_SOURCE_DIR}/patches/patch_python.py ../Lib/distutils/msvc9compiler.py ../Lib/distutils/cygwinccompiler.py)
 
