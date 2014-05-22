@@ -15,6 +15,8 @@ external_source (freetype
     5af8234cf36f64dc2b97f44f89325117
     http://download-mirror.savannah.gnu.org/releases/freetype/
     FORCE)
+	
+set(freetype_BIN_DIR  ${freetype_SRC_DIR}/builds/win32/vc2010)
 
 if(${ILASTIK_BITNESS} STREQUAL "32")
     set(FREETYPE_BITNESS "Win32")
@@ -25,7 +27,7 @@ else()
 endif()
 
 
-set(freetype_BIN_DIR  ${freetype_SRC_DIR}/builds/win32/vc2010)
+
 
 # Switch to x64 build (FIXME: the RE is very siplistic -- check)
 
