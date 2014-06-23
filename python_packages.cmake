@@ -590,10 +590,10 @@ endif (NOT pyreadline_NAME)
 if (NOT pyzmq_NAME)
 
 external_source (pyzmq
-    2.2.0
-    pyzmq-2.2.0.1.tar.gz
-    f2f80709e84c8ac72d6671eee645d804
-	http://pypi.python.org/packages/source/p/pyzmq
+    14.3.1
+    pyzmq-14.3.1.tar.gz
+    7196b4a6fbf98022f17ffa924be3d68d
+	https://pypi.python.org/packages/source/p/pyzmq/
 	FORCE)
 
 message ("Installing ${pyzmq_NAME} into ilastik build area: ${ILASTIK_DEPENDENCY_DIR} ...")
