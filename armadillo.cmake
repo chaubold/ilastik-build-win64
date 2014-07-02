@@ -13,10 +13,10 @@ include (openblas)
 include (hdf5)
 
 external_source (armadillo
-    4.0.4
-    armadillo-4.000.4.tar.gz
-    c548089e29ee69e9a6e9bce76d270bea
-    http://sourceforge.net/projects/arma/files
+    4.320.0
+    armadillo-4.320.0.tar.gz
+    d174ebcb5bffde6c8da8f47f06147386
+    http://sourceforge.net/projects/arma/files/
     FORCE)
     
 if(${ILASTIK_BITNESS} STREQUAL "64")
