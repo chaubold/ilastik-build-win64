@@ -6,7 +6,7 @@ rem set NO_AFFINITY=1 to enable multithreaded execution
 make -j6 NO_AVX=1 FC=${MINGW_PATH}\gfortran.exe BINARY=${ILASTIK_BITNESS} NO_AFFINITY=1
 make PREFIX=${ILASTIK_DEPENDENCY_DIR} install
 
-rem install the libraries in their proper places
+rem install required shared libraries in their proper places
 move "${ILASTIK_DEPENDENCY_DIR_DOS}\lib\libopenblas.dll" "${ILASTIK_DEPENDENCY_DIR_DOS}\bin"
 
 for /f "delims=" %%a in ('dir /b "${MINGW_PATH}\libgcc*.dll"') do @set LIBGCC=%%a
@@ -18,8 +18,13 @@ if exist "${MINGW_PATH}\libwinpthread-1.dll" copy "${MINGW_PATH}\libwinpthread-1
 
 copy "${MINGW_PATH}\libstdc++-6.dll" "${ILASTIK_DEPENDENCY_DIR_DOS}\bin"
 copy "${MINGW_PATH}\libquadmath-0.dll" "${ILASTIK_DEPENDENCY_DIR_DOS}\bin"
+
+rem copy the DLL export library under various names
+rem (this also overwrites the static library libopenblas.lib which
+rem  doesn't work anyway due to unresolved symbols)
 copy exports\libopenblas.lib "${ILASTIK_DEPENDENCY_DIR_DOS}\lib\blas.lib"
 copy exports\libopenblas.lib "${ILASTIK_DEPENDENCY_DIR_DOS}\lib\lapack.lib"
+copy exports\libopenblas.lib "${ILASTIK_DEPENDENCY_DIR_DOS}\lib\libopenblas.lib"
 
 if "${ILASTIK_BITNESS}" == "64" (
     rem The following two gendef/lib commands are not necessary for 32-bit builds
