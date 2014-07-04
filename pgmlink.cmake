@@ -16,6 +16,8 @@ include (opengm)
 include (lemon)
 include (python)
 include (hdf5)
+include (armadillo)
+include (mlpack)
 
 external_git_repo (pgmlink
     HEAD
@@ -24,15 +26,15 @@ external_git_repo (pgmlink
 message ("Installing ${pgmlink_NAME} into ilastik build area: ${ILASTIK_DEPENDENCY_DIR} ...")
 
 ExternalProject_Add(${pgmlink_NAME}
-    DEPENDS             ${ann_NAME} ${boost_NAME} ${vigra_NAME} ${opengm_NAME} ${lemon_NAME} ${python_NAME} ${hdf5_NAME}
+    DEPENDS             ${ann_NAME} ${boost_NAME} ${vigra_NAME} ${opengm_NAME} ${lemon_NAME} ${python_NAME} ${hdf5_NAME} ${armadillo_NAME} ${mlpack_NAME}
     PREFIX              ${ILASTIK_DEPENDENCY_DIR}
     GIT_REPOSITORY      ${pgmlink_URL}
     UPDATE_COMMAND      git pull
     CONFIGURE_COMMAND   ${CMAKE_COMMAND} ${pgmlink_SRC_DIR}
                         -G ${CMAKE_GENERATOR}
 			-DCMAKE_BUILD_TYPE=Release
-                        -DCMAKE_INSTALL_PREFIX=${ILASTIK_DEPENDENCY_DIR}
-                        -DCMAKE_PREFIX_PATH=${ILASTIK_DEPENDENCY_DIR}
+            -DCMAKE_INSTALL_PREFIX=${ILASTIK_DEPENDENCY_DIR}
+            -DCMAKE_PREFIX_PATH=${ILASTIK_DEPENDENCY_DIR}
 			-DWITH_CHECKED_STL=OFF
 			-DWITH_PYTHON=ON
 			-DWITH_TESTS=OFF
