@@ -22,6 +22,8 @@ external_source (armadillo
 if(${ILASTIK_BITNESS} STREQUAL "64")
     set(ARMA_USE_64BIT_WORD "-DARMA_64BIT_WORD=1")
 endif()
+
+set(PATCH_ARMADILLO_CONFIG "${PYTHON_EXE} ${PROJECT_SOURCE_DIR}/patches/patch_armadillo.py ${ILASTIK_DEPENDENCY_DIR}/share/Armadillo/CMake/ArmadilloLibraryDepends-release.cmake ${ILASTIK_DEPENDENCY_DIR}/lib")
     
 message ("Installing ${armadillo_NAME} into ilastik build area: ${ILASTIK_DEPENDENCY_DIR} ...")
 ExternalProject_Add(${armadillo_NAME}
@@ -41,6 +43,7 @@ ExternalProject_Add(${armadillo_NAME}
         ${ARMA_USE_64BIT_WORD}
     BUILD_COMMAND       devenv armadillo.sln /build Release /project ALL_BUILD
     INSTALL_COMMAND     devenv armadillo.sln /build Release /project INSTALL
+                      \n${PATCH_ARMADILLO_CONFIG}
 )
 
 set_target_properties(${armadillo_NAME} PROPERTIES EXCLUDE_FROM_ALL ON)
