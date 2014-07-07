@@ -252,7 +252,7 @@ ExternalProject_Add(${lazyflow_NAME}
     SOURCE_DIR          ""
     GIT_REPOSITORY      ""
     UPDATE_COMMAND      ""
-    BINARY_DIR          ${ILASTIK_DEPENDENCY_DIR}/src/drtile-build
+    BINARY_DIR          ${ILASTIK_DEPENDENCY_DIR}/src/${lazyflow_NAME}-build
     # Read the config information from ${ILASTIK_DEPENDENCY_DIR}/lib/vigranumpy/VigranumpyConfig.cmake
     CONFIGURE_COMMAND   ${CMAKE_COMMAND} ${ILASTIK_DEPENDENCY_DIR}/ilastik/lazyflow/lazyflow/drtile
         -G ${CMAKE_GENERATOR}
@@ -279,7 +279,7 @@ ExternalProject_Add(${counting_NAME}
     DOWNLOAD_COMMAND    ""
     UPDATE_COMMAND      ""
     PATCH_COMMAND       ""
-    BINARY_DIR ${ILASTIK_DEPENDENCY_DIR}/src/cwrapper-build
+    BINARY_DIR ${ILASTIK_DEPENDENCY_DIR}/src/${counting_NAME}-build
     CONFIGURE_COMMAND   ${CMAKE_COMMAND} ${ILASTIK_DEPENDENCY_DIR}/ilastik/ilastik/ilastik/applets/counting/cwrapper
     -G ${CMAKE_GENERATOR} -DWITH_CPLEX=1 -DWITH_GUROBI=1
     BUILD_COMMAND       devenv cwrapper.sln /build "Release" /project ALL_BUILD
