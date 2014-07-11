@@ -24,8 +24,10 @@ ExternalProject_Add(${opengm_NAME}
                         -G ${CMAKE_GENERATOR}
                         -DCMAKE_INSTALL_PREFIX=${ILASTIK_DEPENDENCY_DIR}
                         -DBUILD_EXAMPLES=OFF
+                        -DBUILD_TUTORIALS=OFF
                         -DBUILD_TESTING=OFF
-			-DWITH_CPLEX=ON
+                        -DWITH_CPLEX=ON
+                        -DWITH_HDF5=ON
     BUILD_COMMAND       ""
     TEST_COMMAND        "" 
     INSTALL_COMMAND     devenv opengm2.sln /build Release /project INSTALL
