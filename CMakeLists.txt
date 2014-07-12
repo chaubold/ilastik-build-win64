@@ -347,13 +347,23 @@ if(${ILASTIK_BITNESS} STREQUAL "64")
     SET(CPACK_NSIS_INSTALL_ROOT "$PROGRAMFILES64")
 endif()
 
+# include the NSIS macro to associate file extensions with program names
+# (the include command must use a DOS path)
+string(REGEX REPLACE "/" "\\\\\\\\" CPACK_NSIS_INCLUDE_PATH ${PROJECT_SOURCE_DIR})
+SET(CPACK_NSIS_DEFINES "
+  !include \\\"${CPACK_NSIS_INCLUDE_PATH}\\\\NSIS_FileAssociation.nsh\\\"
+")
+
 # cannot use SET(CPACK_PACKAGE_EXECUTABLES ...) for *.bat files because it appends .exe
 SET(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "
   CreateShortCut \\\"$SMPROGRAMS\\\\$STARTMENU_FOLDER\\\\ilastik.lnk\\\" \\\"$INSTDIR\\\\ilastik.bat\\\" \\\"\\\" \\\"$INSTDIR\\\\ilastik-icon.ico\\\"
+  \\\${registerExtension} \\\"$INSTDIR\\\\ilastik.bat\\\" \\\".ilp\\\" \\\"ilastik Project File\\\"
 ")
+
 SET(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS "
   !insertmacro MUI_STARTMENU_GETFOLDER Application $STARTMENU_FOLDER
   Delete \\\"$SMPROGRAMS\\\\$STARTMENU_FOLDER\\\\ilastik.lnk\\\"
+  \\\${unregisterExtension} \\\".ilp\\\" \\\"ilastik Project File\\\"
 ")
 
 # Cannot use SET(CPACK_PACKAGE_ICON  ...) because NSIS needs a Windows path here.
