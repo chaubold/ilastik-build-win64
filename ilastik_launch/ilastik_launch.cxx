@@ -42,12 +42,13 @@ int main(int argc, char **argv)
     
     std::string this_exe(buffer);
     std::string path = this_exe.substr(0, this_exe.rfind("\\"));
-    std::string script_name = path + "\\ilastik\\ilastik\\ilastik_launch.py";
+    std::string script_name = path + "\\ilastik\\ilastik\\ilastik.py";
     std::string python_exe  = path + "\\python\\python.exe";
     
     std::vector<std::string> args;
     args.push_back("\"" + python_exe + "\"");
     args.push_back("\"" + script_name + "\"");
+    args.push_back("\"--clean_paths\"");
     for(std::size_t k=1; k<argc; ++k)
         args.push_back(std::string("\"") + argv[k] + "\"");
     
@@ -55,8 +56,6 @@ int main(int argc, char **argv)
     for(std::size_t k=0; k<args.size(); ++k)
         cargs.push_back(args[k].c_str());
     cargs.push_back(0);
-    
-    SetEnvironmentVariable(TEXT("PYTHONPATH"), TEXT(""));
     
     if(_spawnv(P_WAIT, python_exe.c_str(), &cargs[0]))
         printWinError("ilastik error: \n");
