@@ -239,6 +239,30 @@ endif (NOT ilastik_NAME)
 
 #############################################################################
 
+if (NOT ilastik_launch_NAME)
+
+set(ilastik_launch_NAME ilastik_launch)
+set(ilastik_launch_SRC_DIR "${PROJECT_SOURCE_DIR}/ilastik_launch")
+    
+message ("Installing ${ilastik_launch_NAME} into ilastik build area: ${ILASTIK_DEPENDENCY_DIR} ...")
+ExternalProject_Add(${ilastik_launch_NAME}
+    PREFIX              ${ILASTIK_DEPENDENCY_DIR}
+    SOURCE_DIR          ${ilastik_launch_SRC_DIR} 
+    UPDATE_COMMAND      ""
+    PATCH_COMMAND       ""
+    CONFIGURE_COMMAND   ${CMAKE_COMMAND} ${ilastik_launch_SRC_DIR} 
+        -G ${CMAKE_GENERATOR} 
+        -DCMAKE_INSTALL_PREFIX=${ILASTIK_DEPENDENCY_DIR}
+    BUILD_COMMAND       devenv ilastik_launch.sln /build Release /project ilastik
+    INSTALL_COMMAND     devenv ilastik_launch.sln /build Release /project INSTALL
+)
+
+set_target_properties(${ilastik_launch_NAME} PROPERTIES EXCLUDE_FROM_ALL ON)
+
+endif (NOT ilastik_launch_NAME)
+
+#############################################################################
+
 if (NOT lazyflow_NAME)
 
 set(lazyflow_NAME lazyflow-HEAD-drtile)
@@ -295,7 +319,7 @@ endif ()
 
 ############################################################################
 
-configure_file(ilastik.bat.in ${ILASTIK_DEPENDENCY_DIR}/ilastik.bat)
+# configure_file(ilastik.bat.in ${ILASTIK_DEPENDENCY_DIR}/ilastik.bat)
 configure_file(LICENSE.txt ${ILASTIK_DEPENDENCY_DIR}/LICENSE.txt COPYONLY)
 configure_file(ilastik-icon.ico ${ILASTIK_DEPENDENCY_DIR}/ilastik-icon.ico COPYONLY)
 
@@ -318,7 +342,7 @@ install(CODE "execute_process(COMMAND ${PYTHON_EXE} ${PROJECT_SOURCE_DIR}/compil
 INSTALL(FILES ${ILASTIK_DEPENDENCY_DIR}/LICENSE.txt DESTINATION .)
 INSTALL(FILES ${ILASTIK_DEPENDENCY_DIR}/COPYING.txt DESTINATION .)
 INSTALL(FILES ${ILASTIK_DEPENDENCY_DIR}/ilastik-icon.ico DESTINATION .)
-INSTALL(FILES ${ILASTIK_DEPENDENCY_DIR}/ilastik.bat DESTINATION .)
+INSTALL(FILES ${ILASTIK_DEPENDENCY_DIR}/ilastik.exe DESTINATION .)
 # INSTALL(FILES ${ILASTIK_DEPENDENCY_DIR}/spyder.bat DESTINATION .)
 INSTALL(DIRECTORY ${ILASTIK_DEPENDENCY_DIR}/ilastik/ DESTINATION ilastik)
 INSTALL(DIRECTORY ${ILASTIK_DEPENDENCY_DIR}/bin/ DESTINATION bin FILES_MATCHING PATTERN "*.dll")
@@ -366,8 +390,8 @@ SET(CPACK_NSIS_DEFINES "
 
 # cannot use SET(CPACK_PACKAGE_EXECUTABLES ...) for *.bat files because it appends .exe
 SET(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "
-  CreateShortCut \\\"$SMPROGRAMS\\\\$STARTMENU_FOLDER\\\\ilastik.lnk\\\" \\\"$INSTDIR\\\\ilastik.bat\\\" \\\"\\\" \\\"$INSTDIR\\\\ilastik-icon.ico\\\"
-  \\\${registerExtension} \\\"$INSTDIR\\\\ilastik.bat\\\" \\\".ilp\\\" \\\"ilastik Project File\\\"
+  CreateShortCut \\\"$SMPROGRAMS\\\\$STARTMENU_FOLDER\\\\ilastik.lnk\\\" \\\"$INSTDIR\\\\ilastik.exe\\\" \\\"\\\" \\\"$INSTDIR\\\\ilastik-icon.ico\\\"
+  \\\${registerExtension} \\\"$INSTDIR\\\\ilastik.exe\\\" \\\".ilp\\\" \\\"ilastik Project File\\\"
 ")
 
 SET(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS "
