@@ -14,10 +14,10 @@ include (numpy)
 include (emulate_c99)
 
 external_source (scipy
-    0.11.0
-    scipy-0.11.0.tar.gz
-    842c81d35fd63579c41a8ca21a2419b9
-    http://downloads.sourceforge.net/project/scipy/scipy/0.11.0
+    0.14.0
+    scipy-0.14.0.tar.gz
+    d7c7f4ccf8b07b08d6fe49d5cd51f85d
+    http://downloads.sourceforge.net/project/scipy/scipy/0.14.0
     FORCE)
 
 if(${ILASTIK_BITNESS} STREQUAL "32")
@@ -39,7 +39,7 @@ ExternalProject_Add(${scipy_NAME}
     URL                 ${scipy_URL}
     URL_MD5             ${scipy_MD5}
     UPDATE_COMMAND      ""
-    PATCH_COMMAND       ""
+    PATCH_COMMAND       ${PATCH_EXE} -p0 -i ${PROJECT_SOURCE_DIR}/patches/scipy.patch
     CONFIGURE_COMMAND   ""
     BUILD_COMMAND       ${SCIPY_BUILD_BAT}
     BUILD_IN_SOURCE     1
