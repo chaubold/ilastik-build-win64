@@ -319,7 +319,7 @@ endif ()
 
 ############################################################################
 
-# configure_file(ilastik.bat.in ${ILASTIK_DEPENDENCY_DIR}/ilastik.bat)
+configure_file(ilastik.bat.in ${ILASTIK_DEPENDENCY_DIR}/ilastik.bat)
 configure_file(LICENSE.txt ${ILASTIK_DEPENDENCY_DIR}/LICENSE.txt COPYONLY)
 configure_file(ilastik-icon.ico ${ILASTIK_DEPENDENCY_DIR}/ilastik-icon.ico COPYONLY)
 
