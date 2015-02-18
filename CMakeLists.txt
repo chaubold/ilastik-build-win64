@@ -252,7 +252,7 @@ ExternalProject_Add(${ilastik_launch_NAME}
     PATCH_COMMAND       ""
     CONFIGURE_COMMAND   ${CMAKE_COMMAND} ${ilastik_launch_SRC_DIR} 
         -G ${CMAKE_GENERATOR} 
-        -DCMAKE_INSTALL_PREFIX=${ILASTIK_DEPENDENCY_DIR}
+        -DCMAKE_INSTALL_PREFIX=${ILASTIK_DEPENDENCY_DIR}/bin
     BUILD_COMMAND       devenv ilastik_launch.sln /build Release /project ilastik
     INSTALL_COMMAND     devenv ilastik_launch.sln /build Release /project INSTALL
 )
@@ -342,10 +342,11 @@ install(CODE "execute_process(COMMAND ${PYTHON_EXE} ${PROJECT_SOURCE_DIR}/compil
 INSTALL(FILES ${ILASTIK_DEPENDENCY_DIR}/LICENSE.txt DESTINATION .)
 INSTALL(FILES ${ILASTIK_DEPENDENCY_DIR}/COPYING.txt DESTINATION .)
 INSTALL(FILES ${ILASTIK_DEPENDENCY_DIR}/ilastik-icon.ico DESTINATION .)
-INSTALL(FILES ${ILASTIK_DEPENDENCY_DIR}/ilastik.exe DESTINATION .)
+INSTALL(FILES ${ILASTIK_DEPENDENCY_DIR}/ilastik.bat DESTINATION .)
 # INSTALL(FILES ${ILASTIK_DEPENDENCY_DIR}/spyder.bat DESTINATION .)
 INSTALL(DIRECTORY ${ILASTIK_DEPENDENCY_DIR}/ilastik/ DESTINATION ilastik)
 INSTALL(DIRECTORY ${ILASTIK_DEPENDENCY_DIR}/bin/ DESTINATION bin FILES_MATCHING PATTERN "*.dll")
+INSTALL(DIRECTORY ${ILASTIK_DEPENDENCY_DIR}/bin/ilastik.exe DESTINATION bin)
 INSTALL(DIRECTORY ${ILASTIK_DEPENDENCY_DIR}/python/ DESTINATION python PATTERN "*ui-bg_highlight-soft_75_cccccc_1x100.png" EXCLUDE)
 INSTALL(DIRECTORY ${ILASTIK_DEPENDENCY_DIR}/Qt4/bin/ DESTINATION Qt4/bin FILES_MATCHING PATTERN "*.dll")
 INSTALL(DIRECTORY ${ILASTIK_DEPENDENCY_DIR}/Qt4/plugins/ DESTINATION Qt4/plugins FILES_MATCHING PATTERN "*.dll")
@@ -390,8 +391,8 @@ SET(CPACK_NSIS_DEFINES "
 
 # cannot use SET(CPACK_PACKAGE_EXECUTABLES ...) for *.bat files because it appends .exe
 SET(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "
-  CreateShortCut \\\"$SMPROGRAMS\\\\$STARTMENU_FOLDER\\\\ilastik.lnk\\\" \\\"$INSTDIR\\\\ilastik.exe\\\" \\\"\\\" \\\"$INSTDIR\\\\ilastik-icon.ico\\\"
-  \\\${registerExtension} \\\"$INSTDIR\\\\ilastik.exe\\\" \\\".ilp\\\" \\\"ilastik Project File\\\"
+  CreateShortCut \\\"$SMPROGRAMS\\\\$STARTMENU_FOLDER\\\\ilastik.lnk\\\" \\\"$INSTDIR\\\\bin\\\\ilastik.exe\\\" \\\"\\\" \\\"$INSTDIR\\\\ilastik-icon.ico\\\"
+  \\\${registerExtension} \\\"$INSTDIR\\\\bin\\\\ilastik.exe\\\" \\\".ilp\\\" \\\"ilastik Project File\\\"
 ")
 
 SET(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS "

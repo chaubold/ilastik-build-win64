@@ -40,8 +40,12 @@ int main(int argc, char **argv)
     char buffer[2000];  /* the script's filename */
     GetModuleFileName(NULL, buffer, sizeof(buffer));
     
+    // full name of this executable
     std::string this_exe(buffer);
-    std::string path = this_exe.substr(0, this_exe.rfind("\\"));
+    // we got something like 'path\bin\ilastik.exe' and extract the 'path' part
+    std::string bin_path = this_exe.substr(0, this_exe.rfind("\\"));
+    std::string path = bin_path.substr(0, bin_path.rfind("\\"));
+    // create the paths to python and ilastik
     std::string script_name = path + "\\ilastik\\ilastik\\ilastik.py";
     std::string python_exe  = path + "\\python\\python.exe";
     
