@@ -47,6 +47,7 @@ int main(int argc, char **argv)
     std::string path = bin_path.substr(0, bin_path.rfind("\\"));
     // create the paths to python and ilastik
     std::string script_name = path + "\\ilastik\\ilastik\\ilastik.py";
+    std::string python_home = path + "\\python";
     std::string python_exe  = path + "\\python\\python.exe";
     
     std::vector<std::string> args;
@@ -60,6 +61,8 @@ int main(int argc, char **argv)
     for(std::size_t k=0; k<args.size(); ++k)
         cargs.push_back(args[k].c_str());
     cargs.push_back(0);
+    
+    SetEnvironmentVariable("PYTHONHOME", python_home.c_str());
     
     if(_spawnv(P_WAIT, python_exe.c_str(), &cargs[0]))
         printWinError("ilastik error: \n");
