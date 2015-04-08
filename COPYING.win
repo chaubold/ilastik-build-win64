@@ -3,7 +3,6 @@ docopt:          MIT
 docutils:        public domain, BSD, PSF
 grin:            BSD 3-Clause
 ipython:         BSD
-jom:             GPL 2 or 3
 logilab_astng:   LGPL
 logilab_common:  LGPL
 markupsafe:      BSD
@@ -291,10 +290,6 @@ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
 CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
-===========================================================================
-jom	GPL 2 or 3
-  http://qt-project.org/wiki/jom
-  see file headers in https://qt.gitorious.org/qt-labs/jom/source/HEAD:src/jomlib
 
 ===========================================================================
 jpeg-turbo    BSD 3-Clause
