@@ -20,7 +20,7 @@ include (armadillo)
 include (mlpack)
 
 external_git_repo (pgmlink
-    7a0c8d4f54e9a4066991829fb52b411a02914666
+    9c4dadb14dd97a4dd1b6d8aca408809978616c45
     http://github.com/martinsch/pgmlink.git)
     
 message ("Installing ${pgmlink_NAME} into ilastik build area: ${ILASTIK_DEPENDENCY_DIR} ...")
@@ -29,7 +29,8 @@ ExternalProject_Add(${pgmlink_NAME}
     DEPENDS             ${ann_NAME} ${boost_NAME} ${vigra_NAME} ${opengm_NAME} ${lemon_NAME} ${python_NAME} ${hdf5_NAME} ${armadillo_NAME} ${mlpack_NAME}
     PREFIX              ${ILASTIK_DEPENDENCY_DIR}
     GIT_REPOSITORY      ${pgmlink_URL}
-    UPDATE_COMMAND      git pull
+    UPDATE_COMMAND      ${GIT_EXECUTABLE} fetch
+                     \n ${GIT_EXECUTABLE} checkout ${pgmlink_TAG} 
     CONFIGURE_COMMAND   ${CMAKE_COMMAND} ${pgmlink_SRC_DIR}
                         -G ${CMAKE_GENERATOR}
 			-DCMAKE_BUILD_TYPE=Release
