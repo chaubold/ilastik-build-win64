@@ -14,7 +14,7 @@ include (python)
 include (numpy)
 
 external_git_repo (iiboost
-    HEAD
+    fb3fd0b972ab5cbf2b837e3ecea937ef1e2fd096
     https://github.com/cbecker/iiboost)
 
 message ("Installing ${iiboost_NAME} into build area: ${ILASTIK_DEPENDENCY_DIR} ...")
@@ -23,8 +23,8 @@ ExternalProject_Add(${iiboost_NAME}
     PREFIX              ${ILASTIK_DEPENDENCY_DIR}
     GIT_REPOSITORY      ${iiboost_URL}
     GIT_TAG             ${iiboost_TAG}
-    UPDATE_COMMAND      ${GIT_EXECUTABLE} checkout master 
-                     \n ${GIT_EXECUTABLE} pull origin master 
+    UPDATE_COMMAND      ${GIT_EXECUTABLE} fetch origin
+                     \n ${GIT_EXECUTABLE} checkout ${iiboost_TAG}   
     CONFIGURE_COMMAND   ${CMAKE_COMMAND} ${iiboost_SRC_DIR}
         -G ${CMAKE_GENERATOR} 
         -DCMAKE_BUILD_TYPE=Release
