@@ -107,6 +107,7 @@ endif()
 
 OPTION(WITH_VTK "Build VTK ?" OFF)
 OPTION(WITH_PGMLINK "pgmLink requires an installed cplex to build successfully" OFF)
+OPTION(WITH_IIBOOST "Build ITK and IIBOOST ?" OFF)
 
 message ("ilastik downloads and builds will be placed here: ${ILASTIK_DEPENDENCY_DIR}")
 
@@ -149,6 +150,8 @@ include(lemon)
 include(cylemon)
 include(armadillo)
 include(mlpack)
+include(tifffile)
+include(ilastiktools)
 # include(spyder)
 
 if(WITH_SCIPY)
@@ -163,6 +166,10 @@ if(WITH_PGMLINK)
     include(ann)
     include(opengm)
     include(pgmlink)
+endif()
+if(WITH_IIBOOST) 
+    include(itk)
+    include(iiboost)
 endif()
 
 #############################################################################
