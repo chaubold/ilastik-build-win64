@@ -20,7 +20,7 @@ include (armadillo)
 include (mlpack)
 
 external_git_repo (pgmlink
-    9c4dadb14dd97a4dd1b6d8aca408809978616c45
+    7a0c8d4f54e9a4066991829fb52b411a02914666
     http://github.com/martinsch/pgmlink.git)
     
 message ("Installing ${pgmlink_NAME} into ilastik build area: ${ILASTIK_DEPENDENCY_DIR} ...")

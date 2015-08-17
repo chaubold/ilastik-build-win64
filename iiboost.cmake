@@ -14,7 +14,7 @@ include (python)
 include (numpy)
 
 external_git_repo (iiboost
-    fb3fd0b972ab5cbf2b837e3ecea937ef1e2fd096
+    437491b5257cce74f86977ed203e1ccb2a02bd5c # 2015-08-17
     https://github.com/cbecker/iiboost)
 
 message ("Installing ${iiboost_NAME} into build area: ${ILASTIK_DEPENDENCY_DIR} ...")

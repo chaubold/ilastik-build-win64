@@ -19,7 +19,7 @@ include (boost)
 include (numpy)
 
 external_git_repo (vigra
-    HEAD
+    35e5d4aed380087d75e206348d1648d9ad9cf1e6 # 2015-07-16
     http://github.com/ukoethe/vigra.git)
     
 message ("Installing ${vigra_NAME} into ilastik build area: ${ILASTIK_DEPENDENCY_DIR} ...")

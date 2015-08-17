@@ -14,7 +14,7 @@ include (numpy)
 include (vigra)
 
 external_git_repo (ilastiktools
-    17a085d269a15ac135e8675f6819a033391e9bb7
+    afd850125a40e027e78eae1a78e03c20a961ea6a
     git://github.com/ilastik/ilastiktools.git
 )
 
