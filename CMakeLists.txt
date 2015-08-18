@@ -265,6 +265,7 @@ ExternalProject_Add(${ilastik_launch_NAME}
 )
 
 set_target_properties(${ilastik_launch_NAME} PROPERTIES EXCLUDE_FROM_ALL ON)
+set (APP_DEPENDENCIES ${APP_DEPENDENCIES} ${ilastik_launch_NAME})
 
 endif (NOT ilastik_launch_NAME)
 
