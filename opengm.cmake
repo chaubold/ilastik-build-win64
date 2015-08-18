@@ -18,7 +18,9 @@ message ("Installing ${opengm_NAME} into ilastik build area: ${ILASTIK_DEPENDENC
 ExternalProject_Add(${opengm_NAME}
     PREFIX              ${ILASTIK_DEPENDENCY_DIR}
     GIT_REPOSITORY      ${opengm_URL}
-    UPDATE_COMMAND      "" # git pull
+    GIT_TAG             ${opengm_TAG}
+    UPDATE_COMMAND      ${GIT_EXECUTABLE} fetch origin 
+                     \n ${GIT_EXECUTABLE} checkout ${opengm_TAG} 
     PATCH_COMMAND       ""
     CONFIGURE_COMMAND   ${CMAKE_COMMAND} ${opengm_SRC_DIR}
                         -G ${CMAKE_GENERATOR}
