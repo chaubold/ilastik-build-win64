@@ -476,7 +476,7 @@ external_source (psutil
     2.1.1
     psutil-2.1.1.tar.gz
     72a6b15d589fab11f6ca245b775bc3c6
-    https://pypi.python.org/packages/source/p/psutil/
+    https://pypi.python.org/packages/source/p/psutil
     FORCE)
 
 message ("Installing ${psutil_NAME} into ilastik build area: ${ILASTIK_DEPENDENCY_DIR} ...")
@@ -593,7 +593,7 @@ external_source (pyzmq
     14.3.1
     pyzmq-14.3.1.tar.gz
     7196b4a6fbf98022f17ffa924be3d68d
-	https://pypi.python.org/packages/source/p/pyzmq/
+	https://pypi.python.org/packages/source/p/pyzmq
 	FORCE)
 
 message ("Installing ${pyzmq_NAME} into ilastik build area: ${ILASTIK_DEPENDENCY_DIR} ...")
