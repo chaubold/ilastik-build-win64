@@ -21,7 +21,9 @@ external_source (armadillo
     
 if(${ILASTIK_BITNESS} STREQUAL "64")
     set(ARMA_USE_64BIT_WORD "-DARMA_64BIT_WORD=1")
+    set(CMAKE_SHARED_LINKER_FLAGS "/machine:x64")
 endif()
+set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${ILASTIK_DEPENDENCY_DIR}/lib/emulate_c99.lib ${ILASTIK_DEPENDENCY_DIR}/lib/libgcc.lib  ${ILASTIK_DEPENDENCY_DIR}/lib/libgfortran-3.lib")
 
 set(PATCH_ARMADILLO_CONFIG "${PYTHON_EXE} ${PROJECT_SOURCE_DIR}/patches/patch_armadillo.py ${ILASTIK_DEPENDENCY_DIR}/share/Armadillo/CMake/ArmadilloLibraryDepends-release.cmake ${ILASTIK_DEPENDENCY_DIR}/lib")
     
@@ -39,6 +41,7 @@ ExternalProject_Add(${armadillo_NAME}
         -DCMAKE_INSTALL_PREFIX=${ILASTIK_DEPENDENCY_DIR}
         -DCMAKE_PREFIX_PATH=${ILASTIK_DEPENDENCY_DIR}
         -DOpenBLAS_NAMES=libopenblas
+		-DCMAKE_SHARED_LINKER_FLAGS=${CMAKE_SHARED_LINKER_FLAGS}
         -DCMAKE_MODULE_PATH=${ILASTIK_DEPENDENCY_DIR}/cmake/hdf5/
         ${ARMA_USE_64BIT_WORD}
     BUILD_COMMAND       devenv armadillo.sln /build Release /project ALL_BUILD
