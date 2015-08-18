@@ -29,6 +29,7 @@ ExternalProject_Add(${pgmlink_NAME}
     DEPENDS             ${ann_NAME} ${boost_NAME} ${vigra_NAME} ${opengm_NAME} ${lemon_NAME} ${python_NAME} ${hdf5_NAME} ${armadillo_NAME} ${mlpack_NAME}
     PREFIX              ${ILASTIK_DEPENDENCY_DIR}
     GIT_REPOSITORY      ${pgmlink_URL}
+    GIT_TAG             ${pgmlink_TAG}
     UPDATE_COMMAND      ${GIT_EXECUTABLE} fetch
                      \n ${GIT_EXECUTABLE} checkout ${pgmlink_TAG} 
     CONFIGURE_COMMAND   ${CMAKE_COMMAND} ${pgmlink_SRC_DIR}
