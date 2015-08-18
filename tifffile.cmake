@@ -26,7 +26,8 @@ ExternalProject_Add(${tifffile_NAME}
     UPDATE_COMMAND      ""
     PATCH_COMMAND       ""
     CONFIGURE_COMMAND   ""
-    BUILD_COMMAND       ${PYTHON_EXE} setup.py install
+    BUILD_COMMAND       ${ADD_PATH} "${ILASTIK_DEPENDENCY_DIR}/bin"
+                     \n ${PYTHON_EXE} setup.py install
     BUILD_IN_SOURCE     1
     INSTALL_COMMAND     ""
 )
