@@ -20,7 +20,7 @@ include (armadillo)
 include (mlpack)
 
 external_git_repo (pgmlink
-    9c4dadb14dd97a4dd1b6d8aca408809978616c45
+    c944c6764a85b88e94ff12c38baa1a8172d9be72
     http://github.com/martinsch/pgmlink.git)
     
 message ("Installing ${pgmlink_NAME} into ilastik build area: ${ILASTIK_DEPENDENCY_DIR} ...")
@@ -41,6 +41,7 @@ ExternalProject_Add(${pgmlink_NAME}
 			-DWITH_TESTS=OFF
 			-DPYTHON_EXECUTABLE=${PYTHON_EXE}
 			-DPYTHON_INCLUDE_DIRS=${PYTHON_INCLUDE_PATH}
+			-DPYTHON_INCLUDE_DIR2=${PYTHON_INCLUDE_PATH}
 			-DPYTHON_LIBRARIES=${PYTHON_LIBRARY_FILE}
     BUILD_COMMAND       devenv pgmlink.sln /build Release /project pgmlink
                         \ndevenv pgmlink.sln /build Release /project pypgmlink
